@@ -27,3 +27,8 @@ production:
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  host: "ec2-54-163-255-181.compute-1.amazonaws.com"
+  database: "das88nfqqn5j3r"
+  user: "uluzlbgxnlwzhl"
+  port: "5432"
+  password: "9d9ad43068688e613686e5c9aca732d8bcf5b0c6264e45cfbe17e6b6965a2a82"
