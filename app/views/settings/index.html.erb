@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Settings</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Tasa de cambio</th>
+      <th>Fecha</th>
+      <th colspan="3">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.exchange_rate %></td>
+        <td><%= setting.created_at %></td>
+        <td><%= link_to 'Ver', setting %></td>
+        <td><%= link_to 'Editar', edit_setting_path(setting) %></td>
+        <td><%= link_to 'Eliminar', setting, method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo', new_setting_path %>

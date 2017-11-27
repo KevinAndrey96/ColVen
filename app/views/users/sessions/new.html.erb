@@ -1,26 +1,36 @@
-<h2>Iniciar sesión</h2>
-
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body >
+<div class="bkg col-xs-4"></div>
+<div class="col-xs-4">
+  <br><br>
+  <center><%= image_tag("ColVen", :class => 'img-responsive', size: "200") %></center>
+  <br>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <center><label>Usuario</label></center>
+    <%= f.email_field :email, autofocus: true , :class => 'form-control' %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <center><label>Contraseña</label></center>
+    <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <label>Recuerdame</label>
     </div>
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Iniciar sesión" %>
+    <center><%= f.submit "Iniciar sesión" , :class => 'btn btn-default'%></center>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
+<br>
+  <%= render "users/shared/links" %>
+</div>
+<div class="col-xs-4"></div>
+</body>

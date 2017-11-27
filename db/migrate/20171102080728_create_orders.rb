@@ -6,11 +6,14 @@ class CreateOrders < ActiveRecord::Migration
       t.string :document
       t.string :name
       t.string :email
-      t.string :city
-      t.string :address
       t.string :phone
       t.string :account
-
+      t.string :zone
+      t.string :status, default: "Espera"# Espera - Recogido - Entregado - Completo
+      t.string :voucher
+      t.string :commerce
+      t.string :distributor
+      
       t.timestamps null: false
     end
   end

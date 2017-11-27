@@ -1,16 +1,23 @@
-<h2>Forgot your password?</h2>
-
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<div class="col-xs-4"></div>
+<div class="col-xs-4">
+  <br><br>
+  <center><%= image_tag("ColVen", :class => 'img-responsive', size: "200") %></center>
+  <br>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <center><label>Correo electrónico</label></center>
+    <%= f.email_field :email, autofocus: true , :class => 'form-control'%>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <center><%= f.submit "Enviame instrucciones de reestablecimiento", :class => 'btn btn-default' %></center>
   </div>
 <% end %>
-
 <%= render "users/shared/links" %>
+</div>
+<div class="col-xs-4"></div>

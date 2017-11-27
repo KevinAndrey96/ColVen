@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dark Admin</title>
+
+    <%= stylesheet_link_tag "local" %>
+
+</head>
+<body style="background-image: url('giroscolven/app/assets/images/Background.jpg');">
+    <div id="wrapper">
+          <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Home/index">
+                    ColVen Intercambios
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul id="active" class="nav navbar-nav side-nav">
+                        <li ><center><%= image_tag("ColVen", :class => 'img-responsive', size: "170") %> </center></li>
+                        <% case current_user.role 
+                        when "Admin" %>
+                            <%= render template: "layouts/sidebarAdmin" %>
+                        <% when "Commerce" %>
+                            <%= render template: "layouts/sidebarCommerce" %>
+                        <% when nil %>
+                            <center><h1>Usted no tiene permiso para ver esta página</h1></center>
+                        <% when "Distributor" %>
+                            <%= render template: "layouts/sidebarDistributor" %>
+                        <% when "Transfer" %>
+                            <%= render template: "layouts/sidebarTransfer" %>
+                        <% when "Wholesaler" %>
+                            <%= render template: "layouts/sidebarWholesaler" %>
+                        <% end %>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="dropdown messages-dropdown">
+                        <i></i> <b class="caret"></b>
+                         
+                            <div>
+                                <% if user_signed_in? %>
+                                    
+                                    <% case current_user.role 
+                                    when "Admin" %>
+                                        <label>Administrador</label>
+                                    <% when "Commerce" %>
+                                        <label>Comercio</label>
+                                    <% when nil %>
+                                        <label>Bloqueo</label>
+                                    <% when "Distributor" %>
+                                        <label>Distribuidor</label>
+                                    <% when "Transfer" %>
+                                        <label>Transferencia</label>
+                                    <% when "Wholesaler" %>
+                                        <label>Mayorista</label>
+                                    <% end %>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <%= link_to "Inicio", root_path %> |
+                                    <%= link_to 'Cambiar contraseña', edit_user_registration_path, :class => 'navbar-link' %> |
+                                    <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+                                <% else %>
+                                    <%= link_to "Registro", new_user_registration_path, :class => 'navbar-link'  %> |
+                                    <%= link_to "Iniciar Sesión", new_user_session_path, :class => 'navbar-link'  %>
+                                <% end %>
+                            </div>
+                        
+                    </li>
+                    <li class="dropdown user-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.email %><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    <li>
+                        <form class="navbar-search">
+                            <input type="text" placeholder="Search" class="form-control">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-sd-12">
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],
+                visits = [123, 323, 443, 32],
+                traffic = [
+                {
+                    Source: "Direct", Amount: 323, Change: 53, Percent: 23, Target: 600
+                },
+                {
+                    Source: "Refer", Amount: 345, Change: 34, Percent: 45, Target: 567
+                },
+                {
+                    Source: "Social", Amount: 567, Change: 67, Percent: 23, Target: 456
+                },
+                {
+                    Source: "Search", Amount: 234, Change: 23, Percent: 56, Target: 890
+                },
+                {
+                    Source: "Internal", Amount: 111, Change: 78, Percent: 12, Target: 345
+                }];
+
+
+            $("#shieldui-chart1").shieldChart({
+                theme: "dark",
+
+                primaryHeader: {
+                    text: "Visitors"
+                },
+                exportOptions: {
+                    image: false,
+                    print: false
+                },
+                dataSeries: [{
+                    seriesType: "area",
+                    collectionAlias: "Q Data",
+                    data: performance
+                }]
+            });
+
+            $("#shieldui-chart2").shieldChart({
+                theme: "dark",
+                primaryHeader: {
+                    text: "Traffic Per week"
+                },
+                exportOptions: {
+                    image: false,
+                    print: false
+                },
+                dataSeries: [{
+                    seriesType: "pie",
+                    collectionAlias: "traffic",
+                    data: visits
+                }]
+            });
+
+            $("#shieldui-grid1").shieldGrid({
+                dataSource: {
+                    data: traffic
+                },
+                sorting: {
+                    multiple: true
+                },
+                rowHover: false,
+                paging: false,
+                columns: [
+                { field: "Source", width: "170px", title: "Source" },
+                { field: "Amount", title: "Amount" },                
+                { field: "Percent", title: "Percent", format: "{0} %" },
+                { field: "Target", title: "Target" },
+                ]
+            });            
+        });        
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<li><%= link_to "Lista Todos los Usuarios", users_path(:role => "All"), :class => 'fa fa-home' %></li>
+<li><%= link_to "Lista Administradores", users_path(:role => "Admin"), :class => 'fa fa-home' %></li>
+<li><%= link_to "Lista Comercios", users_path(:role => "Commerce"), :class => 'fa fa-home' %></li>
+<li><%= link_to "Lista Distribuidores", users_path(:role => "Distributor"), :class => 'fa fa-home' %></li>
+<li><%= link_to "Lista Mayoristas", users_path(:role => "Wholesaler"), :class => 'fa fa-tags' %></li>
+<li><%= link_to "Lista Personal de Transferencias", users_path(:role => "Transfer"), :class => 'fa fa-tags' %></li>
+<li><%= link_to "Lista Bloqueados", users_path(:role => nil), :class => 'fa fa-tags' %></li>
+<li><%= link_to "Lista Reportes", report_index_path, :class => 'fa fa-tags' %></li>
+<li><%= link_to "Lista Clientes", clients_path, :class => 'fa fa-home' %></li>
+<li><%= link_to "Lista Giros", orders_path, :class => 'fa fa-home' %></li>
+<li><%= link_to "Configuraciones", settings_path, :class => 'fa fa-setup' %></li>
+<li><%= link_to "Estadisticas Globales", orders_path, :class => 'fa fa-home' %></li>

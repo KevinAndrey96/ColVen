@@ -1,0 +1,3 @@
+<li><%= link_to "Reporte de Giros", orders_path(:zone => current_user.zone) %></li>
+<li><%= link_to "Comercios", users_path(:role => "Commerce", :creator => current_user.email) %></li>
+<li><%= link_to "Reportes", report_index_path %></li>

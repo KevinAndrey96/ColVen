@@ -1,11 +1,16 @@
 class ClientsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  layout "dashboard"
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    if current_user.role=="Admin" || current_user.role=="Commerce"
+      @clients = Client.all
+    else
+      redirect_to home_index_url
+    end
+        
+     
   end
 
   # GET /clients/1

@@ -1,11 +1,19 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  layout "dashboard"
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
-    @clients = Client.all
+    if current_user.role=="Admin" || current_user.role=="Transfer"
+      @orders = Order.all
+      @clients = Client.all
+    elsif current_user.role=="Commerce" || current_user.role=="Distributor"
+      @orders = Order.where(zone: params[:zone])
+      @clients = Client.all
+    else
+      redirect_to home_index_url
+    end
+    
   end
 
   # GET /orders/1
@@ -26,7 +34,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    @order.zone=current_user.zone
+    @order.distributor=current_user.creator
+    @order.commerce=current_user.email
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -42,6 +52,10 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
+      @order.zone=current_user.zone
+      if @order.voucher!=""
+        @order.status="Exitoso"
+      end
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
@@ -70,6 +84,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher)
     end
 end

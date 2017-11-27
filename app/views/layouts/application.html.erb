@@ -1,33 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>ColVen Intercambios</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+  <p class="alert alert-success pull-right"><%= notice %></p>
 <% end %>
 <% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
+  <p class="alert alert-danger pull-right"><%= alert %></p>
 <% end %>
 
-
-<p class="navbar-text pull-right">
-<% if user_signed_in? %>
-  <strong><%= current_user.role %></strong>.
-  <%= link_to "Inicio", root_path %> |
-  <%= link_to 'Cambiar contraseña', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
   
-<% else %>
-  <%= link_to "Registro", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Iniciar Sesión", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-</p>
 <%= yield %>
-
+</div>
 </body>
 </html>

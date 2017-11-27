@@ -12,30 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :document %><br>
-    <%= f.text_field :document %>
+    <h3><label>Documento</label></h3>
+    <%= f.text_field :document , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <h3><label>Nombre</label></h3>
+    <%= f.text_field :name , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <h3><label>Correo Electrónico</label></h3>
+    <%= f.text_field :email , :class => 'form-control' ,:required => true%>
   </div>
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <h3><label>Teléfono</label></h3>
+    <%= f.text_field :phone , :class => 'form-control' ,:required => true%>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Siguiente", class: "btn btn-default"%>
   </div>
 <% end %>

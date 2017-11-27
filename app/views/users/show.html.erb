@@ -1,0 +1,19 @@
+<h1>Ver Usuario</h1>
+<p>
+  <strong>Email:</strong>
+  <%= @users.email %>
+</p>
+<p>
+  <strong>Rol:</strong>
+  <%= @users.role %>
+</p>
+<p>
+  <strong>Comisión:</strong>
+  <%= @users.commission %>
+</p>
+<p>
+  <strong>Zona:</strong>
+  <%= @users.zone %>
+</p>
+<br>
+<%= link_to 'Ok', home_index_path %>

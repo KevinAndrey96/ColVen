@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
+  get 'report/index'
+
+  resources :settings
+  resources :clients
   #get 'users/index'
   match '/users',   to: 'users#index',   via: 'get'
-  match '/users/:id',     to: 'users#show',       via: 'get'
+  match '/users/new',     to: 'users#new',       via: 'get', :as => "new_user"
+  match '/users/:id',     to: 'users#show',       via: 'get', :as => "user"
+  match '/users/:id/edit',     to: 'users#edit',       via: 'get'
+  
 
   resources :orders
-  resources :clients
   get 'home/index'
+  get 'home/index2'
   root 'home#index'
-
   #devise_for :users
   #devise_for :users, controllers: {
    #     sessions: 'users/sessions'
@@ -17,7 +23,8 @@ Rails.application.routes.draw do
   
   devise_for :users, :path_prefix => 'colven'
   #devise_for :users
-  resources :users, :only =>[:show]
+  #resources :users, :only =>[:show]
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

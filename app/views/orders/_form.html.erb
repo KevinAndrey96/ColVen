@@ -10,43 +10,45 @@
       </ul>
     </div>
   <% end %>
-  
+  <h2><%= link_to 'Nuevo Cliente', new_client_path %></h2>
   <div class="field">
-    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name")) %>
+    <h2><label>Cliente Frecuente</label></h2>
+    
+    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control') %>
   </div>
+  <h1>Datos de quién recibe</h1>
   <div class="field">
-    <%= f.label :value %><br>
-    <%= f.number_field :value %>
-  </div>
-  <div class="field">
-    <%= f.label :document %><br>
-    <%= f.text_field :document %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <h3><label>Valor de intercambio</label></h3>
+    <%= f.number_field :value , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <h3><label>Documento</label></h3>
+    <%= f.text_field :document, :class => 'form-control' ,:required => true %>
   </div>
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <h3><label>Nombre completo</label></h3>
+    <%= f.text_field :name , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <h3><label>Correo electrónico</label></h3>
+    <%= f.text_field :email , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <h3><label>Teléfono</label></h3>
+    <%= f.text_field :phone , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <%= f.label :account %><br>
-    <%= f.text_field :account %>
+    <h3><label>Banco y número de cuenta</label></h3>
+    <%= f.text_field :account, :class => 'form-control' ,:required => true %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br>
+    <div class="actions">
+    <%= submit_tag "Siguiente", class: "btn btn-default" %>
   </div>
+  <% if current_user.role=="Transfer"%>
+    <div class="field">
+    <label>Comprobante de pago</label>
+    <%= f.file_field :voucher %>
+    <%end%>
+    </div>
 <% end %>

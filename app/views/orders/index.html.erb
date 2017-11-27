@@ -1,43 +1,65 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Orders</h1>
+<h1>Lista de los giros</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Client</th>
-      <th>Value</th>
-      <th>Document</th>
-      <th>Name</th>
+      <% case current_user.role
+      when "Transfer" %>
+        <th>Recibe</th>
+        <th>Documento</th>
+        <th>Cuenta</th>
+        <th>Bolivares</th>
+        <th>Estado</th>
+        <th>Opciones</th>
+      <% else%>
+      <th>Remitente</th></th>
+      <th>Recibe</th>
+      <th>Documento</th>
+      <th>Cuenta</th>
+      <th>Pesos</th>
+      <th>Bolivares</th>
       <th>Email</th>
-      <th>City</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Account</th>
+      <th>Teléfono</th>
+      <th>Zona</th>
+      <th>Comercio</th>
+      <th>Estado</th>
       <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.client %></td>
-        <td><%= order.value %></td>
-        <td><%= order.document %></td>
+      <% case current_user.role
+        when "Transfer" %>
         <td><%= order.name %></td>
-        <td><%= order.email %></td>
-        <td><%= order.city %></td>
-        <td><%= order.address %></td>
-        <td><%= order.phone %></td>
+        <td><%= order.document %></td>
         <td><%= order.account %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= number_to_currency(order.value/Setting.last.exchange_rate, precision: 0) %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to 'Ver comprobante', order %></td>
+        <td><%= link_to 'Subir comprobante', edit_order_path(order) %></td>
+      <% else%>
+        <td><%= order.client.name %></td>
+        <td><%= order.name %></td>
+        <td><%= order.document %></td>
+        <td><%= order.account %></td>
+        <td><%= number_to_currency(order.value, precision: 0) %></td>
+        <td><%= number_to_currency(order.value/Setting.last.exchange_rate, precision: 0) %></td>
+        <td><%= order.email %></td>
+        <td><%= order.phone %></td>
+        <td><%= order.zone %></td>
+        <td><%= order.commerce %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to 'Ver', order %></td>
+      <% end %>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Order', new_order_path %>

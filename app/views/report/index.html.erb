@@ -1,0 +1,37 @@
+<h1>Reporte</h1>
+
+<table class="table">
+    <thead>
+        <th>Comercio</th>
+        <th>Cantidad Intercambios</th>
+        <th>Valor</th>
+        <th>Comisión</th>
+        <th>Valor a cobrar</th>
+    </thead>
+    <% if current_user.role == "Wholesaler"%>
+    <tbody>
+    <% @comercios.each do |comercios| %>
+      
+      <tr>
+        <td><%= @v0=comercios.email %></td>
+        <td><%= @v1=Order.where(:orders => {:Distributor => comercios.email}).count %></td>
+        <td><%= number_to_currency(@v2=Order.where(:orders => {:Distributor => comercios.email}).sum(:value), precision: 0) %></td>
+        <td><%= comercios.commission %></td>
+        <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% else %>
+  <tbody>
+    <% @comercios.each do |comercios| %>
+      <tr>
+        <td><%= comercios.email %></td>
+        <td><%= @v1=Order.where(:orders => {:Commerce => comercios.email}).count %></td>
+        <td><%= number_to_currency(@v2=Order.where(:orders => {:Commerce => comercios.email}).sum(:value), precision: 0) %></td>
+        <td><%= comercios.commission %></td>
+        <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% end %>
+</table>

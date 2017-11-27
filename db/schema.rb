@@ -11,14 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102080728) do
+ActiveRecord::Schema.define(version: 20171124221649) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "document"
     t.string   "name"
     t.string   "email"
-    t.string   "city"
-    t.string   "address"
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,30 +28,43 @@ ActiveRecord::Schema.define(version: 20171102080728) do
     t.string   "document"
     t.string   "name"
     t.string   "email"
-    t.string   "city"
-    t.string   "address"
     t.string   "phone"
     t.string   "account"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "zone"
+    t.string   "status",      default: "Espera"
+    t.string   "voucher"
+    t.string   "commerce"
+    t.string   "distributor"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id"
 
+  create_table "settings", force: :cascade do |t|
+    t.float    "exchange_rate"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",         null: false
-    t.string   "encrypted_password",     default: "",         null: false
+    t.string   "email",                  default: "",  null: false
+    t.string   "encrypted_password",                   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,          null: false
+    t.integer  "sign_in_count",          default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "role",                   default: "Commerce"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "role"
+    t.string   "name"
+    t.string   "zone"
+    t.float    "commission",             default: 0.0
+    t.string   "creator"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

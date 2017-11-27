@@ -1,0 +1,58 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <label>Nombre</label>
+    <%= f.text_field :name  , :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <label>Correo Electrónico</label>
+    <%= f.text_field :email  , :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <label>Comisión</label>
+    <%= f.text_field :commission  , :class => 'form-control' %>
+  </div>
+  
+  <div class="field">
+    
+    <% case current_user.role 
+     when "Admin" %>
+       <label>Rol</label>
+       <%= select_tag("user[role]", options_for_select([['Bloquear', ""],['Administrador', "Admin"], ['Mayorista', "Wholesaler"], ['Comercio', "Commerce"],["Distribuidor","Distributor"],["Transfer","Transfer"]]), :class => 'form-control' ) %>
+       <% when "Distributor" %>
+       <%= f.label :role %><br>
+       <%= select_tag("user[role]", options_for_select([ ['Comercio', "Commerce"],["Distribuidor","Distributor"]]), :class => 'form-control' ) %>
+     <% when "Wholesaler" %>
+       <%= f.label :role %><br>
+       <%= select_tag("user[role]", options_for_select([["Distribuidor","Distributor"]]), :class => 'form-control' ) %>
+    <% end %>
+  </div>
+  <div class="field">
+    <label>Zona</label>
+    <% case current_user.role
+     when "Admin" %>
+       <%= f.text_field :zone, :class => 'form-control' %>
+    <% when "Distributor" %>
+       <%= f.text_field :zone, :class => 'form-control' %>
+    <% when "Wholesaler" %>
+       <%= f.text_field :zone, :class => 'form-control' %>
+    <% end %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Guardar", :class => 'btn btn-info' %>
+  </div>
+<% end %>
+<br>
+
