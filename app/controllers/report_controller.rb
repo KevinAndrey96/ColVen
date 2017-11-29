@@ -2,7 +2,7 @@ class ReportController < ApplicationController
   layout "dashboard"
   def index
     
-    if current_user.role!="Admin" || current_user.role!="Distributor" || current_user.role!="Wholesaler"
+    if current_user.role!="Admin" && current_user.role!="Distributor" && current_user.role!="Wholesaler"
       redirect_to home_index_url
     end
     case current_user.role
