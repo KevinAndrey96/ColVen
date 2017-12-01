@@ -27,7 +27,7 @@
       <tr>
         <td><%= comercios.email %></td>
         <td><%= @v1=Order.where(:orders => {:Commerce => comercios.email}).count %></td>
-        <td><%= number_to_currency(@v2=Order.where(:orders => {:Commerce => comercios.email}).sum(:value), precision: 0) %></td>
+        <td><%= number_to_currency(@v2=Order.where(:orders => {:commerce => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
         <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
       </tr>
