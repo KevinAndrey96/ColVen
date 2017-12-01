@@ -14,7 +14,7 @@
   <div class="field">
     <h2><label>Cliente Frecuente</label></h2>
     
-    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control') %>
+    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control'),:required => true %>
   </div>
   <h1>Datos de quién recibe</h1>
   <div class="field">
