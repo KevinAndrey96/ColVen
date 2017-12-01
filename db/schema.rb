@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171124221649) do
     t.string   "role"
     t.string   "name"
     t.string   "zone"
+    t.string   "phone"
     t.float    "commission",             default: 0.0
     t.string   "creator"
   end

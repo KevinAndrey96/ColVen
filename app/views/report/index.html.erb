@@ -4,6 +4,7 @@
     <thead>
         <th>Correo</th>
         <th>Nombre</th>
+        <th>Teléfono</th>
         <th>Cantidad Intercambios</th>
         <th>Valor</th>
         <th>Comisión</th>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= @v0=comercios.email %></td>
         <td><%= comercios.name %></td>
+        <td><%= comercios.phone %></td>
         <td><%= @v1=Order.where(:orders => {:distributor => comercios.email}).count %></td>
         <td><%= number_to_currency(@v2=Order.where(:orders => {:distributor => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
@@ -29,6 +31,7 @@
       <tr>
         <td><%= comercios.email %></td>
         <td><%= comercios.name %></td>
+        <td><%= comercios.phone %></td>
         <td><%= @v1=Order.where(:orders => {:commerce => comercios.email}).count %></td>
         <td><%= number_to_currency(@v2=Order.where(:orders => {:commerce => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
