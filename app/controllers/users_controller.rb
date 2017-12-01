@@ -29,8 +29,8 @@ class UsersController < ApplicationController
   
   def create
   @user= User.new(user_params)
-  @user.password="123456"
-  @user.password_confirmation="123456"
+  @user.password="Colven2018@"
+  @user.password_confirmation="Colven2018@"
   @user.creator=current_user.email
   
   if current_user.role=="Commerce"
