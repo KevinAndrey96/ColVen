@@ -14,7 +14,7 @@
   <div class="field">
     <h2><label>Cliente Frecuente</label></h2>
     
-    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control'),:required => true %>
+    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control',:required => true) %>
   </div>
   <h1>Datos de quién recibe</h1>
   <div class="field">
@@ -39,16 +39,17 @@
   </div>
   <div class="field">
     <h3><label>Banco y número de cuenta</label></h3>
-    <%= f.text_field :account, :class => 'form-control' ,:required => true %>
+    <%= f.text_field :account, :class => 'form-control', :required => true %>
   </div>
   <br>
     <div class="actions">
-    <%= submit_tag "Siguiente", class: "btn btn-default" %>
-  </div>
-  <% if current_user.role=="Transfer"%>
+      <%= submit_tag "Siguiente", :class => "btn btn-default" %>
+    </div>
+  <% if current_user.role=="Transfer" %>
     <div class="field">
     <label>Comprobante de pago</label>
     <%= f.file_field :voucher %>
-    <%end%>
     </div>
-<% end %>
+  <% end %>
+    
+<% end %> 
