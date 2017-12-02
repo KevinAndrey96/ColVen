@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: [:show, :edit, :update, :destroy]
+  before_action :set_client, only: [:show, :edit, :update]
   layout "dashboard"
   # GET /clients
   # GET /clients.json
@@ -46,15 +46,18 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
+    
     respond_to do |format|
-      if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+      if @client.update(client_params) && current_user.role=="Admin"
+        format.html { redirect_to @client, notice: 'La información del cliente se ha actualizado satisfactoriamente.' }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
+      
     end
+  
   end
 
   # DELETE /clients/1
@@ -62,7 +65,7 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.html { redirect_to clients_url, notice: 'El cliente se ha eliminado satisfactoriamente.' }
       format.json { head :no_content }
     end
   end

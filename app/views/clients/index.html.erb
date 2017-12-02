@@ -21,7 +21,9 @@
         <td><%= client.email %></td>
         <td><%= client.phone %></td>
         <td><%= link_to 'Ver', client %></td>
+          <% if current_user.role=="Admin" %>
         <td><%= link_to 'Editar', edit_client_path(client) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
