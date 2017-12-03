@@ -32,11 +32,7 @@ class UsersController < ApplicationController
   @user.password="Colven2018@"
   @user.password_confirmation="Colven2018@"
   @user.creator=current_user.email
-  
-  if current_user.role=="Commerce"
-    @user.role="Distributor"
-    @user.zone=current_user.zone
-  end
+  #@user.zone=current_user.zone
     respond_to do |format|
       if @user.save
   format.html { redirect_to @user, notice: 'El Usuario se ha creado satisfactoriamente' }
@@ -52,6 +48,8 @@ class UsersController < ApplicationController
     def update
     respond_to do |format|
   @user= User.find(params[:id])
+   @user.password="Colven2018@"
+  @user.password_confirmation="Colven2018@"
       if @user.update(user_params)
   format.html { redirect_to @user, notice: 'El Usuario se ha actualizado satisfactoriamente' }
   format.json { render:show, status: :ok, location: @user }
