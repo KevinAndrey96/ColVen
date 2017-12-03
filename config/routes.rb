@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   match '/users/new',     to: 'users#new',       via: 'get', :as => "new_user"
   match '/users/:id',     to: 'users#show',       via: 'get', :as => "user"
   match '/users/:id/edit',     to: 'users#edit',       via: 'get'
+ 
   
 
   resources :orders
   get 'home/index'
-  get 'home/index2'
+ 
   root 'home#index'
   #devise_for :users
   #devise_for :users, controllers: {
