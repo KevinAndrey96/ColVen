@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       
   #resources :users
   
-  devise_for :users, :path_prefix => 'colven'
+  devise_for :users, :path_prefix => 'colven', :controllers => { :passwords => 'passwords' }
   #devise_for :users
   #resources :users, :only =>[:show]
   resources :users
