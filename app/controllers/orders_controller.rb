@@ -4,12 +4,19 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    @clients = Client.all
     if current_user.role=="Admin" || current_user.role=="Transfer"
-      @orders = Order.all
-      @clients = Client.all
+      if params[:created_at]
+        @orders = Order.where(created_at: DateTime.now.to_date)
+      else
+        @orders = Order.all
+      end
     elsif current_user.role=="Commerce" || current_user.role=="Distributor"
+    if params[:created_at]
+      @orders = Order.where(zone: params[:zone], created_at: DateTime.now.to_date)
+    else
       @orders = Order.where(zone: params[:zone])
-      @clients = Client.all
+    end
     else
       redirect_to home_index_url
     end
@@ -39,7 +46,7 @@ class OrdersController < ApplicationController
     @order.commerce=current_user.email
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: 'La transacción se ha efectuado satisfatoriamente' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -71,7 +78,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'La transacción se ha eliminado con exito' }
       format.json { head :no_content }
     end
   end
@@ -84,6 +91,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at)
     end
 end
