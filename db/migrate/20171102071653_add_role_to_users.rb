@@ -5,5 +5,6 @@ class AddRoleToUsers < ActiveRecord::Migration
     add_column :users, :zone, :string
     add_column :users, :phone, :string
     add_column :users, :commission, :float, default: 0.0
+    add_column :users, :creator, :string
   end
 end
