@@ -1,4 +1,4 @@
 <li><%= link_to "Historial De Clientes", clients_path %></li>
 <li><%= link_to "Realizar Intercambio", new_order_path %></li>
-<li><%= link_to "Reportes General", orders_path(:zone => current_user.zone) %></li>
-<li><%= link_to "Reporte Hoy", orders_path(:created_at => true , :zone => current_user.zone), :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte General", orders_path %></li>
+<li><%= link_to "Reporte ultimas 24 horas", orders_path(:created_at => true), :class => 'fa fa-home' %></li>

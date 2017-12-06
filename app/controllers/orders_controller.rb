@@ -7,16 +7,22 @@ class OrdersController < ApplicationController
     @clients = Client.all
     if current_user.role=="Admin" || current_user.role=="Transfer"
       if params[:created_at]
-        @orders = Order.where(created_at: DateTime.now.to_date)
+        @orders = Order.where(
+          'created_at >= :today',
+          :today  => Time.now - 1.days
+        )
       else
         @orders = Order.all
       end
     elsif current_user.role=="Commerce" || current_user.role=="Distributor"
     if params[:created_at]
-      @orders = Order.where(zone: params[:zone], created_at: DateTime.now.to_date)
-    else
-      @orders = Order.where(zone: params[:zone])
-    end
+        @orders = Order.where(
+          'created_at >= :today',
+          :today  => Time.now - 1.days, commerce: current_user.email
+        )
+      else
+        @orders = Order.where(commerce: current_user.email)
+      end
     else
       redirect_to home_index_url
     end

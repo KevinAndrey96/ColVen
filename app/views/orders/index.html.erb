@@ -24,6 +24,7 @@
       <th>Teléfono</th>
       <th>Zona</th>
       <th>Comercio</th>
+      <th>Fecha y Hora</th>
       <th>Estado</th>
       <th colspan="3"></th>
       <% end %>
@@ -53,6 +54,7 @@
         <td><%= order.phone %></td>
         <td><%= order.zone %></td>
         <td><%= order.commerce %></td>
+        <td><%= order.created_at %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'Ver', order %></td>
       <% end %>
