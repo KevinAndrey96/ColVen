@@ -23,9 +23,6 @@ class OrdersController < ApplicationController
       else
         @orders = Order.where(commerce: current_user.email)
       end
-    else
-      redirect_to home_index_url
-    end
     elsif current_user.role=="Distributor" 
     if params[:created_at]
         @orders = Order.where(
@@ -33,11 +30,12 @@ class OrdersController < ApplicationController
           :today  => Time.now - 1.days, distributor: current_user.email
         )
       else
-        @orders = Order.where(commerce: current_user.email)
+        @orders = Order.where(distributor: current_user.email)
       end
     else
       redirect_to home_index_url
     end
+    
     
   end
 
