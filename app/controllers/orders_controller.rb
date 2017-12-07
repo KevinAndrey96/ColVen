@@ -14,11 +14,23 @@ class OrdersController < ApplicationController
       else
         @orders = Order.all
       end
-    elsif current_user.role=="Commerce" || current_user.role=="Distributor"
+    elsif current_user.role=="Commerce" 
     if params[:created_at]
         @orders = Order.where(
-          'created_at >= :today',
+          'created_at >= :today and commerce= :commerce',
           :today  => Time.now - 1.days, commerce: current_user.email
+        )
+      else
+        @orders = Order.where(commerce: current_user.email)
+      end
+    else
+      redirect_to home_index_url
+    end
+    elsif current_user.role=="Distributor" 
+    if params[:created_at]
+        @orders = Order.where(
+          'created_at >= :today and distributor= :distributor',
+          :today  => Time.now - 1.days, distributor: current_user.email
         )
       else
         @orders = Order.where(commerce: current_user.email)
