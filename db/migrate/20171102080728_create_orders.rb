@@ -3,13 +3,14 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.references :client, index: true, foreign_key: true
       t.integer :value
+      t.integer :target_value
       t.string :document
       t.string :name
       t.string :email
       t.string :phone
       t.string :account
       t.string :zone
-      t.string :status, default: "Espera"# Espera - Recogido - Entregado - Completo
+      t.string :status, default: "Espera"# Exitoso
       t.string :voucher
       t.string :commerce
       t.string :distributor
