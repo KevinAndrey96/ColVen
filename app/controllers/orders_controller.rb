@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
     @order.zone=current_user.zone
     @order.distributor=current_user.creator
     @order.commerce=current_user.email
+    @order.target_value=@order.value/Setting.last.exchange_rate
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'La transacción se ha efectuado satisfatoriamente' }

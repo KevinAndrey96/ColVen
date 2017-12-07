@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124221649) do
+ActiveRecord::Schema.define(version: 20171207090810) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "document"
@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 20171124221649) do
     t.string   "phone"
     t.string   "account"
     t.string   "zone"
-    t.string   "status",      default: "Espera"
+    t.string   "status",       default: "Espera"
     t.string   "voucher"
     t.string   "commerce"
     t.string   "distributor"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "target_value"
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id"

@@ -39,7 +39,7 @@
         <td><%= order.name %></td>
         <td><%= order.document %></td>
         <td><%= order.account %></td>
-        <td><%= number_to_currency(order.value/Setting.last.exchange_rate, precision: 0) %></td>
+        <td><%= number_to_currency(order.target_value, precision: 0) %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'Ver comprobante', order %></td>
         <td><%= link_to 'Subir comprobante', edit_order_path(order) %></td>
@@ -49,7 +49,7 @@
         <td><%= order.document %></td>
         <td><%= order.account %></td>
         <td><%= number_to_currency(order.value, precision: 0) %></td>
-        <td><%= number_to_currency(order.value/Setting.last.exchange_rate, precision: 0) %></td>
+        <td><%= number_to_currency(order.target_value, precision: 0) %></td>
         <td><%= order.email %></td>
         <td><%= order.phone %></td>
         <td><%= order.zone %></td>

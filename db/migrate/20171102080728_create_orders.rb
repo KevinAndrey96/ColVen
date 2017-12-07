@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.references :client, index: true, foreign_key: true
       t.integer :value
-      t.integer :target_value
+      #t.integer :target_value
       t.string :document
       t.string :name
       t.string :email
