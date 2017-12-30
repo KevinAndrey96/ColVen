@@ -5,7 +5,7 @@
         when "Admin" %>
             <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= Setting.last.exchange_rate %></label></h1></center>
         <% when "Commerce" %>
-       <!-- <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= Setting.last.exchange_rate %></label></h1></center>
+        <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= Setting.last.exchange_rate %></label></h1></center>
             <div class="row">
         <div class="col-xs-6">
             <h2>Pesos a girar</h2><br>
@@ -24,8 +24,8 @@
             </div>
             <div class="col-xs-2"></div>
         </div>
-    </div>-->
-    <center><h1>Plataforma temporalmente fuera de servicio por problemas con el portal bancario de venezuela</h1></center>
+    </div>
+    
         <% when nil %>
             <center><h1>Usted no tiene permiso para ver esta página</h1></center>
         <% when "Distributor" %>
