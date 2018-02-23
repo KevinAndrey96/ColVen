@@ -37,7 +37,7 @@
 <p>
   <strong>Comprobante de pago:</strong>
   <br>
-  <%= image_tag @order.voucher.url %>
+  <img class="img-responsive" src="http://colvenintercambios.com/Vouchers/upload/<%= Digest::SHA1.hexdigest(@order.id.to_s)%>.jpg">
 </p>
 
 <%= link_to 'Ok', home_index_path %>

@@ -42,7 +42,7 @@
         <td><%= number_to_currency(order.target_value, precision: 0) %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'Ver comprobante', order %></td>
-        <td><%= link_to 'Subir comprobante', edit_order_path(order) %></td>
+        <td><%= link_to 'Subir comprobante', voucher_index_path("id": order.id) %></td>
       <% else%>
         <td><%= order.client.name %></td>
         <td><%= order.name %></td>

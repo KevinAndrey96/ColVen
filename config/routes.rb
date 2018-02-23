@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'voucher/index'
+
   get 'report/index'
 
   resources :settings

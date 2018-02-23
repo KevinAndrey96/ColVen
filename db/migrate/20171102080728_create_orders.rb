@@ -10,7 +10,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :phone
       t.string :account
       t.string :zone
-      t.string :status, default: "Espera"# Exitoso
+      t.string :status, default: "Espera"
       t.string :voucher
       t.string :commerce
       t.string :distributor
