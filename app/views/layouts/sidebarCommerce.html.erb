@@ -2,4 +2,4 @@
 <li><%= link_to "Realizar Intercambio", new_order_path %></li>
 <li><%= link_to "Reporte General", orders_path %></li>
 <li><%= link_to "Reporte Intercambios EXITOSOS ultimas 24 horas", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Reporte Intercambios PENDIENTES ultimas 24 horas", orders_path(:created_at => true, :status => 'Pendiente' ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte Intercambios PENDIENTES ultimas 24 horas", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' %></li>
