@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
     if current_user.role=="Admin" || current_user.role=="Transfer"
       if params[:created_at]
         @orders = Order.where(
-          'created_at >= :today',
-          :today  => Time.now - 1.days
+          'created_at >= :today and status= :status',
+          :today  => Time.now - 1.days, status: params[:status]
         )
       else
         @orders = Order.all
@@ -120,7 +120,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status)
       #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check)
     end
 end

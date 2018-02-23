@@ -8,5 +8,6 @@
 <li><%= link_to "Clientes", clients_path, :class => 'fa fa-home' %></li>
 <li><%= link_to "Reportes", report_index_path, :class => 'fa fa-tags' %></li>
 <li><%= link_to "Reporte intercambios general", orders_path, :class => 'fa fa-home' %></li>
-<li><%= link_to "Reporte Intercambios ultimas 24 horas", orders_path(:created_at => true ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte Intercambios EXITOSOS ultimas 24 horas", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte Intercambios PENDIENTES ultimas 24 horas", orders_path(:created_at => true, :status => 'Pendiente' ), :class => 'fa fa-home' %></li>
 <li><%= link_to "Configuraciones", settings_path, :class => 'fa fa-setup' %></li>
