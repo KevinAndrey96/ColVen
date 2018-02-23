@@ -77,17 +77,29 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       @order.zone=current_user.zone
-      if @order.voucher!=""
+      if params[:voucher_check]
+        @order.voucher="http://colvenintercambios.com/Vouchers/upload/"+ Digest::SHA1.hexdigest(@order.id.to_s) + ".jpg"
         @order.status="Exitoso"
       end
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
+        if current_user.role!="Transfer"
+          format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+          format.json { render :show, status: :ok, location: @order }
+        else
+          format.html { redirect_to voucher_index_path("id": @order.id), notice: 'Order was successfully updated.' }
+        end
       else
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
+      
+      
+      
+      
+      
+      
+      
   end
 
   # DELETE /orders/1
@@ -108,6 +120,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check)
+      #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check)
     end
 end
