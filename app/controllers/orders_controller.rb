@@ -11,7 +11,12 @@ class OrdersController < ApplicationController
           'created_at >= :today and status= :status',
           :today  => Time.now - 1.days, status: params[:status]
         )
-      else
+      elsif params[:status]
+        @orders = Order.where(
+          'status= :status',
+          status: params[:status]
+        )
+      else  
         @orders = Order.all
       end
     elsif current_user.role=="Commerce" 

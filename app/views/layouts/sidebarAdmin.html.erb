@@ -7,7 +7,11 @@
 <li><%= link_to "Bloqueados", users_path(:role => nil), :class => 'fa fa-tags' %></li>
 <li><%= link_to "Clientes", clients_path, :class => 'fa fa-home' %></li>
 <li><%= link_to "Reportes", report_index_path, :class => 'fa fa-tags' %></li>
-<li><%= link_to "Reporte intercambios general", orders_path, :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte intercambios GENERAL", orders_path, :class => 'fa fa-home' %></li>
+
+<li><%= link_to "Reporte Intercambios EXITOSOS general", orders_path(:status => 'Exitoso' ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte Intercambios ESPERA general", orders_path(:status => 'Espera' ), :class => 'fa fa-home' %></li>
+
 <li><%= link_to "Reporte Intercambios EXITOSOS ultimas 24 horas", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Reporte Intercambios PENDIENTES ultimas 24 horas", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Reporte Intercambios ESPERA ultimas 24 horas", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' %></li>
 <li><%= link_to "Configuraciones", settings_path, :class => 'fa fa-setup' %></li>
