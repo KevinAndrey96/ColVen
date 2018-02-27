@@ -41,6 +41,10 @@
     <h3><label>Banco y número de cuenta</label></h3>
     <%= f.text_field :account, :class => 'form-control', :required => true %>
   </div>
+  <div class="field">
+    <h3><label>Comentario</label></h3>
+    <%= f.text_field :commentary, :class => 'form-control', :required => false %>
+  </div>
   <br>
     <div class="actions">
       <%= submit_tag "Siguiente", :class => "btn btn-default" %>

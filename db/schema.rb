@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207090810) do
+ActiveRecord::Schema.define(version: 20180227200636) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "document"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20171207090810) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "target_value"
+    t.string   "commentary"
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id"
