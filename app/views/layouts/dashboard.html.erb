@@ -28,13 +28,13 @@
                         when "Admin" %>
                             <%= render template: "layouts/sidebarAdmin" %>
                         <% when "Commerce" %>
-                            <%= render template: "layouts/sidebarCommerce" %>
+                            <%=# render template: "layouts/sidebarCommerce" %>
                         <% when nil %>
                             <center><h1>Usted no tiene permiso para ver esta página</h1></center>
                         <% when "Distributor" %>
                             <%= render template: "layouts/sidebarDistributor" %>
                         <% when "Transfer" %>
-                            <%= render template: "layouts/sidebarTransfer" %>
+                            <%= #render template: "layouts/sidebarTransfer" %>
                         <% when "Wholesaler" %>
                             <%= render template: "layouts/sidebarWholesaler" %>
                         <% end %>
