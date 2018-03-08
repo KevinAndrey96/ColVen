@@ -45,6 +45,9 @@
         <% when "Wholesaler" %>
             <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= Setting.last.exchange_rate %></label></h1></center>
         <% end %>
+        <div class="row">
+            <center><%= image_tag("Horarios", :class => 'img-responsive', size: "800") %> </center>
+        </div>
 </div>
 
 <script>
