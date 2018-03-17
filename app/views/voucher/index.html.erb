@@ -2,6 +2,6 @@
 	<form action="http://colvenintercambios.com/Vouchers/UploadVoucher.php" method="POST" enctype="multipart/form-data">
 		<input type="file" class="form-control" name="uploaded_file">
 		<input type="hidden" name="OrderId" value=<%= Digest::SHA1.hexdigest(@order.id.to_s)%>>
-		<input type="submit" value="SubirComprobante" class="btn btn-default">
+		<input type="submit" value="Subir Comprobante" class="btn btn-default">
 	</form>
 </div>
