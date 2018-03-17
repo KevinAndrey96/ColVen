@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :camilos
   get 'voucher/index'
 
   get 'report/index'
