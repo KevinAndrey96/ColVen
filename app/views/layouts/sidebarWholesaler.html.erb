@@ -1,2 +1,2 @@
 <li><%= link_to "Distribuidores", users_path(:role => "Distributor", :creator => current_user.email), :class => 'fa fa-home' %></li>
-<li><%= link_to "Reportes", report_index_path %></li>
+<li><%= link_to "Reportes", report_index_path(:action_param=>"MyReport") %></li>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'specific_report/index'
+
   get 'voucher/index'
 
   get 'report/index'
