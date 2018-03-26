@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @clients = Client.all
-    if current_user.role=="Admin" || current_user.role=="Transfer"
+    if current_user.role=="Wholesaler" && params[:user]
+      @orders=Order.where(:commerce => params[:user])
+    elsif current_user.role=="Admin" || current_user.role=="Transfer"
       if params[:created_at]
         @orders = Order.where(
           'created_at >= :today and status= :status',
@@ -125,7 +127,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user)
       #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check)
     end
 end

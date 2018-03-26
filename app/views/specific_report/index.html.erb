@@ -11,8 +11,7 @@
         <th>Valor a cobrar</th>
         <th>Opciones</th>
     </thead>
-    <% if current_user.role == "Wholesaler"%>
-    <tbody>
+     <tbody>
     <% @comercios.each do |comercios| %>
       
       <tr>
@@ -23,23 +22,10 @@
         <td><%= number_to_currency(@v2=Order.where(:orders => {:distributor => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
         <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
+      <% if current_user.role == "Wholesaler"%>
         <td><%= link_to "Ver Reporte Comercio", merge.params(:role => "Distributor", :user => @v0) %></td>
+      <% end %>
       </tr>
-    <% end %>
-  </tbody>
-  <% else %>
-  <tbody>
-    <% @comercios.each do |comercios| %>
-      <tr>
-        <td><%= comercios.email %></td>
-        <td><%= comercios.name %></td>
-        <td><%= comercios.phone %></td>
-        <td><%= @v1=Order.where(:orders => {:commerce => comercios.email}).count %></td>
-        <td><%= number_to_currency(@v2=Order.where(:orders => {:commerce => comercios.email}).sum(:value), precision: 0) %></td>
-        <td><%= comercios.commission %></td>
-        <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
-      </tr>
-    <% end %>
   </tbody>
   <% end %>
 </table>
