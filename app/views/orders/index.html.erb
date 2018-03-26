@@ -17,6 +17,7 @@
       <th>Remitente</th></th>
       <th>Recibe</th>
       <th>Documento</th>
+      <th>Banco</th>
       <th>Cuenta</th>
       <th>Pesos</th>
       <th>Bolivares</th>
@@ -47,6 +48,7 @@
         <td><%= order.client.name %></td>
         <td><%= order.name %></td>
         <td><%= order.document %></td>
+        <td><%= order.bank %></td>
         <td><%= order.account %></td>
         <td><%= number_to_currency(order.value, precision: 0) %></td>
         <td><%= number_to_currency(order.target_value, precision: 0) %></td>
