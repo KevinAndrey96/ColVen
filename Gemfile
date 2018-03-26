@@ -5,10 +5,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
 	
-gem 'rails_12factor'
+#gem 'rails_12factor'
 gem 'devise'
 gem 'cancan'
-gem 'pg'
+#gem 'pg'
 gem 'aws-sdk', '~> 2'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sprockets-rails'
@@ -43,6 +43,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+end
+group :production do
+  gem 'pg', '~> 0.20'
+  gem 'rails_12factor'
 end
 
 group :development do
