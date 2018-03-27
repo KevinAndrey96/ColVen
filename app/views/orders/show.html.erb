@@ -1,48 +1,72 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <p id="notice"><%= notice %></p>
 
 <p>
+<center>
   <strong>Cliente:</strong>
   <%= @order.client.name %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Valor:</strong>
   <%= @order.value %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Documento:</strong>
   <%= @order.document %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Nombre:</strong>
   <%= @order.name %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Email:</strong>
   <%= @order.email %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Teléfono:</strong>
   <%= @order.phone %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Banco:</strong>
   <%= @order.bank %>
+</center>
 </p>
 
 <p>
+<center>
   <strong>Cuenta:</strong>
   <%= @order.account %>
+</center>
 </p>
 <p>
+<center>
   <strong>Comprobante de pago:</strong>
   <br>
-  <img class="img-responsive" src="http://colvenintercambios.com/Vouchers/upload/<%= Digest::SHA1.hexdigest(@order.id.to_s)%>.jpg">
+  <img class="img-responsive" src="http://colvenintercambios.com/Vouchers/upload/<%= Digest::SHA1.hexdigest(@order.id.to_s)%>.jpg" onerror="this.src='http://colvenintercambios.com/Vouchers/upload/default.jpg'">
+</center>
 </p>
 
-<%= link_to 'Ok', home_index_path %>
+<center><%= link_to 'Ok', home_index_path %></center>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
