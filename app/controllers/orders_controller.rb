@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
       end
     elsif current_user.role=="Distributor" 
     if params[:user]
-       @orders=Order.where(:commerce => params[:user])
+       @orders=Order.where(:commerce => params[:user], :distributor => current_user.email)
     elsif params[:created_at]
         @orders = Order.where(
           'created_at >= :today and distributor= :distributor',
@@ -89,6 +89,7 @@ class OrdersController < ApplicationController
     @order.zone=current_user.zone
     @order.distributor=current_user.creator
     @order.commerce=current_user.email
+    @order.wholesaler=User.where(:email => current_user.creator).first.creator
     @order.target_value=@order.value/Setting.last.exchange_rate
     respond_to do |format|
       if @order.save
@@ -149,8 +150,8 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      #params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
-      params.permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
+      #params.permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
       #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check) este no
     end
 end
