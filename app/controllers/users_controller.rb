@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action:set_user, only: [:create,:show, :edit, :update, :destroy]
+  before_action:set_user, only: [:create,:show, :edit, :update, :destroy, :delete]
     layout "dashboard"
   def index
     if params[:role]=="All" && current_user.role=="Admin"

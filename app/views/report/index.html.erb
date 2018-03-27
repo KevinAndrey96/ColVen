@@ -9,7 +9,10 @@
         <th>Valor</th>
         <th>Comisión</th>
         <th>Valor a cobrar</th>
+        <% if current_user.role == "Wholesaler" ||  current_user.role == "Distributor" %>
         <th>Opciones</th>
+        <% end %>
+        
     </thead>
      <tbody>
     <% @comercios.each do |comercios| %>
@@ -22,7 +25,7 @@
         <td><%= number_to_currency(@v2=Order.where(:orders => {:distributor => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
         <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
-      <% if current_user.role == "Wholesaler"%>
+      <% if current_user.role == "Wholesaler" || current_user.role == "Distributor" %>
         <td><%= link_to "Ver Reporte Especifico", report_index_path(:action_param => "Specific", :user => @v0, :role => comercios.role) %></td>
       <% end %>
       </tr>

@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   match '/users/:id',     to: 'users#show',       via: 'get', :as => "user"
   match '/users/:id/edit',     to: 'users#edit',       via: 'get'
   match '/users/:id/destroy',     to: 'users#destroy',       via: 'get'
- 
-  
 
   resources :orders
+  #get '/orders/cancel' => "orders#cancel"
+  get '/orders/:id/cancel', to: 'orders#cancel', :as => "cancel_order"
   get 'home/index'
  
   root 'home#index'

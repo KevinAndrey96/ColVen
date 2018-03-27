@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :cancel]
   layout "dashboard"
   # GET /orders
   # GET /orders.json
@@ -31,7 +31,9 @@ class OrdersController < ApplicationController
         @orders = Order.where(commerce: current_user.email)
       end
     elsif current_user.role=="Distributor" 
-    if params[:created_at]
+    if params[:user]
+       @orders=Order.where(:commerce => params[:user])
+    elsif params[:created_at]
         @orders = Order.where(
           'created_at >= :today and distributor= :distributor',
           :today  => Time.now - 1.days, distributor: current_user.email
@@ -49,6 +51,26 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+  end
+  
+  def cancel
+    #@order=Order.find(params[:id])
+    #@order.status="Canceled"
+    
+    
+    respond_to do |format|
+      
+     if @order.status=="Espera"
+        @order.commentary="Cancelado"
+        @order.status="Cancelado"
+        @order.save
+          format.html { redirect_to root_path, notice: 'El intercambio se ha cancelado satisfatoriamente.' }
+          format.json { render :show, status: :ok, location: @order }
+      else
+        format.html { redirect_to @order, notice: 'El intercambio ya se realizó.' }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /orders/new
@@ -127,7 +149,8 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank)
-      #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check)
+      #params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
+      params.permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
+      #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check) este no
     end
 end

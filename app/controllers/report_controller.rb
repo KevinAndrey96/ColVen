@@ -10,7 +10,13 @@ class ReportController < ApplicationController
     when "Admin"
       @comercios=User.where(:users => { :role => "Commerce"})
     when "Distributor"
-      @comercios=User.where(:users => { :role => "Commerce", :creator => current_user.email})
+      if params[:role]=="Commerce"
+        redirect_to orders_url(:user => params[:user])
+      elsif params[:action_param]=="Specific"
+        @comercios=User.where(:users => { :creator => params[:user]})
+      else
+        @comercios=User.where(:users => { :role => "Commerce", :creator => current_user.email})
+      end
     when "Wholesaler"
       if params[:role]=="Commerce"
         redirect_to orders_url(:user => params[:user])
