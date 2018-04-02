@@ -19,11 +19,11 @@
   <h1>Datos de quién recibe</h1>
   <div class="field">
     <h3><label>Valor de intercambio</label></h3>
-    <%= f.number_field :value , :class => 'form-control',:required => true %>
+    <%= f.number_field :value , :class => 'form-control',:required => true, :type => 'number' %>
   </div>
   <div class="field">
     <h3><label>Documento</label></h3>
-    <%= f.text_field :document, :class => 'form-control' ,:required => true %>
+    <%= f.text_field :document, :class => 'form-control' ,:required => true, :type => 'number' %>
   </div>
   <div class="field">
     <h3><label>Nombre completo</label></h3>
@@ -31,11 +31,11 @@
   </div>
   <div class="field">
     <h3><label>Correo electrónico</label></h3>
-    <%= f.text_field :email , :class => 'form-control',:required => true %>
+    <%= f.text_field :email , :class => 'form-control',:required => true, :type => 'email' %>
   </div>
   <div class="field">
     <h3><label>Teléfono</label></h3>
-    <%= f.text_field :phone , :class => 'form-control',:required => true %>
+    <%= f.text_field :phone , :class => 'form-control',:required => true, :type => 'number' %>
   </div>
   <div class="field">
     <h3><label>Banco</label></h3>
@@ -43,7 +43,7 @@
   </div>
   <div class="field">
     <h3><label>Número de cuenta</label></h3>
-    <%= f.text_field :account, :class => 'form-control', :required => true %>
+    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'number' %>
   </div>
   <br>
     <div class="actions">
