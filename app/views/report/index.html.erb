@@ -21,7 +21,13 @@
         <td><%= @v0=comercios.email %></td>
         <td><%= comercios.name %></td>
         <td><%= comercios.phone %></td>
-        <td><%= @v1=Order.where(:orders => {:distributor => comercios.email}).count %></td>
+        <td>
+          <% if current_user.role == "Wholesaler" && params[:action_param]=="MyReport" %>
+            <%= @v1=Order.where(:distributor => comercios.email).count %>
+          <% elsif current_user.role == "Wholesaler" && params[:action_param]=="Specific" %>
+            <%= @v1=Order.where(:commerce => comercios.email).count %>
+          <% end %>
+        </td>
         <td><%= number_to_currency(@v2=Order.where(:orders => {:distributor => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
         <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
