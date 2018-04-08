@@ -26,9 +26,12 @@
                 </button>
                 <%= link_to "Colven Intercambios", root_path, :class => 'navbar-brand' %>
             </div>
+            
             <div class="collapse navbar-collapse navbar-ex1-collapse">
+                
                 <ul id="active" class="nav navbar-nav side-nav">
                         <li ><center><%= image_tag("ColVen", :class => 'img-responsive', size: "170") %> </center></li>
+                        
                         <% case current_user.role 
                         when "Admin" %>
                             <%= render template: "layouts/sidebarAdmin" %>
@@ -45,6 +48,7 @@
                         <% end %>
                     
                 </ul>
+                
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li class="dropdown messages-dropdown">
                         <i></i> <b class="caret"></b>
