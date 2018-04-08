@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
         )
       else  
         @orders = Order.all
-        @orders = @orders.paginate(:page => 1, :per_page => 20)
+        #@orders = @orders.paginate(:page => 1, :per_page => 20)
       end
       
       if params[:search] && params[:valor_se]
@@ -36,7 +36,14 @@ class OrdersController < ApplicationController
           'name = :se_value',
           se_value: params[:valor_se]
           )
-        @orders = @orders.paginate(:page => 1, :per_page => 20)
+        #@orders = @orders.paginate(:page => 1, :per_page => 20)
+          
+        elsif params[:search] == "Fecha"
+        @orders = Order.where(
+          'DATE(created_at) = :se_value',
+          se_value: params[:valor_se]
+          )
+        #@orders = @orders.paginate(:page => 1, :per_page => 20)
           
         end
       end
@@ -65,7 +72,7 @@ class OrdersController < ApplicationController
       redirect_to home_index_url
     end
     
-    
+    @orders = @orders.paginate(:page => 1, :per_page => 20)
   end
 
   # GET /orders/1
