@@ -8,18 +8,18 @@ class UsersController < ApplicationController
       #@users= User.all
       @users= User.where(role: params[:role])
     elsif current_user.role=="Commerce" || current_user.role=="Wholesaler" || current_user.role=="Distributor"
-    
-    if params[:se_action] && params[:se_value]
-      if params[:se_action]=="search" && current_user.role=="Distributor"
-        @users= User.where(role: params[:role], creator: current_user.email, email: params[:se_value], )
-      elsif params[:se_action]=="search" && current_user.role=="Wholesaler"
-        @users= User.where(role: params[:role], creator: params[:creator], email: params[:se_value], )
+      if params[:se_action] && params[:se_value]
+        if params[:se_action]=="search" && current_user.role=="Distributor"
+          @variable=params[:se_value]
+          @users= User.where("name LIKE :se_value and role = :role and creator = :creator", se_value: "%#{params[:se_value]}%",  role: params[:role], creator: current_user.email)
+        elsif params[:se_action]=="search" && current_user.role=="Wholesaler"
+          @users= User.where("name LIKE :se_value and role = :role and creator = :creator", se_value: "%#{params[:se_value]}%", role: params[:role], creator: params[:creator])
+        else
+          @users= User.where(role: params[:role], creator: params[:creator])
+        end
       else
         @users= User.where(role: params[:role], creator: params[:creator])
       end
-    else
-      @users= User.where(role: params[:role], creator: params[:creator])
-    end
     else
       redirect_to home_index_url
     end
