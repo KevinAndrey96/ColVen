@@ -27,6 +27,7 @@
             <li><%= link_to "Clientes", clients_path, :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
         </ul>
     </li>
+    <br>
     <li><!-- Link with dropdown items -->
         <center><a href="#SReportes" data-toggle="collapse" class="" style="font-size:20px; color:white; text-decoration:none; ">Reportes</a>
         <ul class="collapse list-unstyled " id="SReportes">
@@ -36,6 +37,7 @@
             <li><%= link_to "Espera Diario", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' , :style => 'text-decoration:none;' %></li>
         </ul>
     </li>
+    <br>
     <li><!-- Link with dropdown items -->
         <center><a href="#SConfig" data-toggle="collapse" class="" style="font-size:20px; color:white; text-decoration:none; ">Configuraciones</a>
         <ul class="collapse list-unstyled " id="SConfig">
