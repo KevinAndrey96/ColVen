@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
           status: params[:status]
         )
       else  
-        @orders = Order.all
+        @orders = Order.all.desc
         #@orders = @orders.paginate(:page => 1, :per_page => 20)
       end
       
