@@ -11,13 +11,16 @@
                 <center><h2>Simulador</h2></center>
                 <div class="col-md-4"></div>
                 <div class="col-md-2">
-                    <input type="number" id="Peso" onchange="Cambio()" class="form-control" placeholder="Pesos Colombianos">
+                    <input type="number" style="font-size: 150%" id="Peso" onchange="Cambio()" class="form-control" placeholder="Pesos Colombianos">
                 </div>
                 <div class="col-md-2">
-                    <strong><input type="text" id="Bolivar" class="form-control" placeholder="Bolivares" readonly></strong>
+                    <strong><input type="text" style="font-size: 150%" id="Bolivar" class="form-control" placeholder="Bolivares" readonly></strong>
                 </div>
                 <div class="col-md-4"></div>
             </div>
+            
+            
+            
         <div class="col-xs-6">
             <div class="col-xs-2"></div>
             <div class="col-xs-8">
@@ -45,7 +48,16 @@
         <% when "Wholesaler" %>
             <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%=(Setting.last.exchange_rate).round(3) %></label></h1></center>
         <% end %>
+        
         <br>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="border:1px solid black;">
+                <center><h2><%= Comment.last.text %></h2></center>
+            </div>
+            <div class="col-md-3"></div>
+            
+        </div>
         <div class="row">
             <center><%= image_tag("Horarios", :class => 'img-responsive', size: "800") %> </center>
         </div>
@@ -60,7 +72,7 @@
         
         document.getElementById("Bolivar").value = completo;
         
-        var num = '$' + completo.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        var num = 'BFS ' + completo.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
         
         document.getElementById("Bolivar").value = num;
     }

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   get 'search/index'
 
   get 'specific_report/index'
