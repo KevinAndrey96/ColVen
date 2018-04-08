@@ -1,17 +1,44 @@
-<li><%= link_to "Todos los Usuarios", users_path(:role => "All"), :class => 'fa fa-home' %></li>
-<li><%= link_to "Administradores", users_path(:role => "Admin"), :class => 'fa fa-home' %></li>
-<li><%= link_to "Comercios", users_path(:role => "Commerce"), :class => 'fa fa-home' %></li>
-<li><%= link_to "Distribuidores", users_path(:role => "Distributor"), :class => 'fa fa-home' %></li>
-<li><%= link_to "Mayoristas", users_path(:role => "Wholesaler"), :class => 'fa fa-tags' %></li>
-<li><%= link_to "Personal de Transferencias", users_path(:role => "Transfer"), :class => 'fa fa-tags' %></li>
-<li><%= link_to "Bloqueados", users_path(:role => nil), :class => 'fa fa-tags' %></li>
-<li><%= link_to "Clientes", clients_path, :class => 'fa fa-home' %></li>
-<li><%= link_to "Reportes", report_index_path, :class => 'fa fa-tags' %></li>
-<li><%= link_to "Reporte intercambios GENERAL", orders_path, :class => 'fa fa-home' %></li>
+<!--
+#link_to "Todos los Usuarios", users_path(:role => "All"), :class => 'fa fa-home' %></li>
+#link_to "Todos los Usuarios", users_path(:role => "All"), :class => 'fa fa-home' %>
+#link_to "Reportes", report_index_path, :class => 'fa fa-tags' %></li>
+#link_to "Reporte Intercambios EXITOSOS general", orders_path(:status => 'Exitoso' ), :class => 'fa fa-home' %></li>
+#link_to "Reporte Intercambios ESPERA general", orders_path(:status => 'Espera' ), :class => 'fa fa-home' %></li>
+-->
 
-<li><%= link_to "Reporte Intercambios EXITOSOS general", orders_path(:status => 'Exitoso' ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Reporte Intercambios ESPERA general", orders_path(:status => 'Espera' ), :class => 'fa fa-home' %></li>
 
-<li><%= link_to "Reporte Intercambios EXITOSOS ultimas 24 horas", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Reporte Intercambios ESPERA ultimas 24 horas", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Configuraciones", settings_path, :class => 'fa fa-setup' %></li>
+
+<div class="sidebar-header">
+    
+</div>
+        <!-- Sidebar Links -->
+<ul class="list-unstyled components container-fluid">
+    <li><!-- Link with dropdown items -->
+        <center><a href="#SUsuarios" data-toggle="collapse" class="" style="font-size:20px; color:white; text-decoration:none; ">Usuarios</a>
+        <ul class="collapse list-unstyled " id="SUsuarios">
+            <li><%= link_to "Administradores", users_path(:role => "Admin"), :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Mayoristas", users_path(:role => "Wholesaler"), :class => 'fa fa-tags', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Transferencias", users_path(:role => "Transfer"), :class => 'fa fa-tags', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Distribuidores", users_path(:role => "Distributor"), :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Comercios", users_path(:role => "Commerce"), :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Bloqueados", users_path(:role => nil), :class => 'fa fa-tags', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Clientes", clients_path, :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+        </ul>
+    </li>
+    <li><!-- Link with dropdown items -->
+        <center><a href="#SReportes" data-toggle="collapse" class="" style="font-size:20px; color:white; text-decoration:none; ">Reportes</a>
+        <ul class="collapse list-unstyled " id="SReportes">
+            <li><a href="#">Buscar</a></li>
+            <li><%= link_to "General", orders_path, :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Exitosos Diario", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+            <li><%= link_to "Espera Diario", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' , :style => 'text-decoration:none;' %></li>
+        </ul>
+    </li>
+    <li><!-- Link with dropdown items -->
+        <center><a href="#SConfig" data-toggle="collapse" class="" style="font-size:20px; color:white; text-decoration:none; ">Configuraciones</a>
+        <ul class="collapse list-unstyled " id="SConfig">
+            <li ><%= link_to "Tasa de cambio", settings_path, :class => 'fa fa-setup', :style => 'text-decoration:none;' %></li>
+        </ul>
+    </li>
+    
+</ul>

@@ -8,10 +8,9 @@ class OrdersController < ApplicationController
     if current_user.role=="Wholesaler" && params[:user]
       @orders=Order.where(:commerce => params[:user])
     elsif current_user.role=="Admin" || current_user.role=="Transfer"
-      if params[:created_at]
-        @orders = Order.where(
-          'created_at >= :today and status= :status',
-          :today  => Time.now - 1.days, status: params[:status]
+      if params[:created_at]=="true"
+        @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, status: params[:status]
+          
         )
       elsif params[:status]
         @orders = Order.where(
