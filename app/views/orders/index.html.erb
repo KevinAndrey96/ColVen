@@ -1,6 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lista de los giros</h1>
+<h1>Transacciones</h1>
+<div class="row">
+<% if current_user.role == "Wholesaler" || current_user.role == "Distributor" || current_user.role == "Admin" %>
+<% if params[:user] %>
+  <form method="GET" action="/orders">
+    <div class="col-md-11">
+      
+      <input type="date" class="form-control" name="fecha">
+      <input type="hidden" value="<%= params[:user]%>" name="user">
+    
+    </div>
+    <div class="col-md-1">
+      
+      <input type="submit" value="Buscar" class="form-control">
+      
+    </div>
+  </form>
+  <% end %>
+<% end %>
+</div>
+
+<br>
 
 <table class="table">
   <thead>

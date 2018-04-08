@@ -5,7 +5,8 @@
         <th>Correo</th>
         <th>Nombre</th>
         <th>Teléfono</th>
-        <th>Cantidad Intercambios</th>
+        <th>Intercambios</th>
+        <th>Intercambios Hoy</th>
         <th>Valor</th>
         <th>Comisión</th>
         <th>Valor a cobrar</th>
@@ -28,11 +29,25 @@
             <%= @v1=Order.where(:commerce => comercios.email).count %>
           <% end %>
         </td>
+        
+        <td>
+          <% if current_user.role == "Wholesaler" && params[:action_param]=="MyReport" %>
+            <%= @v1=Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,:distributor => comercios.email).count %>
+          <% elsif current_user.role == "Wholesaler" && params[:action_param]=="Specific" %>
+            <%= @v1=Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,:commerce => comercios.email).count %>
+          <% end %>
+        </td>
+        
         <td><%= number_to_currency(@v2=Order.where(:orders => {:distributor => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
         <td><%= number_to_currency(@v2-((comercios.commission/100)*@v2), precision: 0) %></td>
       <% if current_user.role == "Wholesaler" || current_user.role == "Distributor" %>
-        <td><%= link_to "Ver Reporte Especifico", report_index_path(:action_param => "Specific", :user => @v0, :role => comercios.role) %></td>
+        <td>
+          <%= link_to "Reporte Especifico", report_index_path(:action_param => "Specific", :user => @v0, :role => comercios.role), :id => "Linkin" %>
+          
+        </td>
+        
+        
       <% end %>
       </tr>
   </tbody>

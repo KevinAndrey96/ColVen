@@ -1,21 +1,23 @@
 <div class="field">
     <% case current_user.role 
         when "Admin" %>
-            <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
+            <center><h1 style="font-size: 250%; color: #FF9800;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
         <% when "Commerce" %>
-        <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
-            <div class="row">
-        <div class="col-xs-6">
-            <h2>Pesos a girar</h2><br>
-            <div class="col-xs-6">
-                <input type="number" id="Peso" onchange="Cambio()" class="form-control" placeholder="Pesos Colombianos">
-            </div>
+        <center><h1 style="font-size: 250%; color: #FF980;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
             
-            <div class="col-xs-6">
-                <strong><input type="number" id="Bolivar" class="form-control" placeholder="Bolivares" readonly></strong>
-                <!-- Number to currency-->
+            
+            
+            <div class="row">
+                <center><h2>Simulador</h2></center>
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <input type="number" id="Peso" onchange="Cambio()" class="form-control" placeholder="Pesos Colombianos">
+                </div>
+                <div class="col-md-2">
+                    <strong><input type="text" id="Bolivar" class="form-control" placeholder="Bolivares" readonly></strong>
+                </div>
+                <div class="col-md-4"></div>
             </div>
-        </div>
         <div class="col-xs-6">
             <div class="col-xs-2"></div>
             <div class="col-xs-8">
@@ -53,7 +55,14 @@
     function Cambio()
     {
         var peso=document.getElementById("Peso").value;
-        document.getElementById("Bolivar").value = Math.round(peso/<%= Setting.last.exchange_rate %>);
+        
+        var completo=Math.round(peso/<%= Setting.last.exchange_rate %>);
+        
+        document.getElementById("Bolivar").value = completo;
+        
+        var num = '$' + completo.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        
+        document.getElementById("Bolivar").value = num;
     }
 </script>
 

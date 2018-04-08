@@ -8,7 +8,16 @@ class OrdersController < ApplicationController
     
     @clients = Client.all
     if current_user.role=="Wholesaler" && params[:user]
-      @orders=Order.where(:commerce => params[:user])
+      if params[:fecha]
+        #@orders=Order.where(:commerce => params[:user], 'DATE(created_at) = :se_fech')
+         @orders = Order.where(
+          'DATE(created_at) = :fecha and commerce = :comercio_u',
+          fecha: params[:fecha], comercio_u: params[:user]
+          )
+      else
+        @orders=Order.where(:commerce => params[:user])
+      end
+      
     elsif current_user.role=="Admin" || current_user.role=="Transfer"
       if params[:created_at]=="true"
         @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, status: params[:status]
@@ -58,7 +67,13 @@ class OrdersController < ApplicationController
         @orders = Order.where(commerce: current_user.email)
       end
     elsif current_user.role=="Distributor" 
-    if params[:user]
+    if params[:fecha] && params[:user]
+        #@orders=Order.where(:commerce => params[:user], 'DATE(created_at) = :se_fech')
+         @orders = Order.where(
+          'DATE(created_at) = :fecha and commerce = :comercio_u',
+          fecha: params[:fecha], comercio_u: params[:user]
+          )
+      elsif params[:user]
        @orders=Order.where(:commerce => params[:user], :distributor => current_user.email)
     elsif params[:created_at]
         @orders = Order.where(
