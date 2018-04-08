@@ -59,10 +59,11 @@ class OrdersController < ApplicationController
       
     elsif current_user.role=="Commerce" 
     if params[:created_at]
-        @orders = Order.where(
-          'created_at >= :today and commerce= :commerce',
-          :today  => Time.now - 1.days, commerce: current_user.email
-        ).desc
+      #  @orders = Order.where(
+       #   'created_at >= :today and commerce= :commerce',
+        #  :today  => Time.now - 1.days, commerce: current_user.email
+        #).desc
+        @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, :commerce => params[:commerce]).desc
       else
         @orders = Order.where(commerce: current_user.email).desc
       end
@@ -80,6 +81,7 @@ class OrdersController < ApplicationController
           'created_at >= :today and distributor= :distributor',
           :today  => Time.now - 1.days, distributor: current_user.email
         ).desc
+        @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, :distributor => current_user.email)
       else
         @orders = Order.where(distributor: current_user.email).desc
       end

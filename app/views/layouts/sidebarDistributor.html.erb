@@ -1,4 +1,12 @@
-<li><%= link_to "Reporte intercambios General", orders_path(:zone => current_user.zone) %></li>
-<li><%= link_to "Reporte intercambios hoy", orders_path(:zone => current_user.zone, :created_at => true ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Comercios", users_path(:role => "Commerce", :creator => current_user.email) %></li>
-<li><%= link_to "Reportes", report_index_path(:action_param=>"MyReport") %></li>
+<!--<li><%= link_to "Reporte intercambios General", orders_path(:zone => current_user.zone) %></li>-->
+
+<div class="sidebar-header">
+<center><h1 style="color:transparent;">Espacio</h1></center>
+</div>
+<ul class="list-unstyled components container-fluid">
+    <center><%= link_to "Comercios", users_path(:role => "Commerce", :creator => current_user.email), :style => "font-size:20px; color:white; text-decoration:none;" %></center>
+    <br>
+    <center><%= link_to "Intercambios hoy", orders_path(:zone => current_user.zone, :created_at => true ), :class => 'fa fa-home', :style => "font-size:20px; color:white; text-decoration:none;" %></center>
+    <br>
+    <center><%= link_to "Reportes", report_index_path(:action_param=>"MyReport") , :style => "font-size:20px; color:white; text-decoration:none;"%></center>
+</ul>

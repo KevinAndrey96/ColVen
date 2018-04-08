@@ -46,8 +46,11 @@
             <%= @v1=Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,:distributor => comercios.email).count %>
           <% elsif current_user.role == "Wholesaler" && params[:action_param]=="Specific" %>
             <%= @v1=Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,:commerce => comercios.email).count %>
+          <% elsif current_user.role == "Distributor" && params[:action_param]=="MyReport" %>  
+          <%= @v1=Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,:commerce => comercios.email).count %>
           <% end %>
         </td>
+
         <!--
         <td><%= number_to_currency(@v2=Order.where(:orders => {:distributor => comercios.email}).sum(:value), precision: 0) %></td>
         <td><%= comercios.commission %></td>
