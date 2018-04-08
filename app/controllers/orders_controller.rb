@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
          @orders = Order.where(
           'DATE(created_at) = :fecha and commerce = :comercio_u',
           fecha: params[:fecha], comercio_u: params[:user]
-          )
+          ).desc
       else
         @orders=Order.where(:commerce => params[:user])
       end
@@ -22,12 +22,12 @@ class OrdersController < ApplicationController
       if params[:created_at]=="true"
         @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, status: params[:status]
           
-        )
+        ).desc
       elsif params[:status]
         @orders = Order.where(
           'status= :status',
           status: params[:status]
-        )
+        ).desc
       else  
         @orders = Order.all.desc
         #@orders = @orders.paginate(:page => 1, :per_page => 20)
@@ -38,20 +38,20 @@ class OrdersController < ApplicationController
         @orders = Order.where(
           'document = :se_value',
            se_value: params[:valor_se]
-          )
+          ).desc
         @orders = @orders.paginate(:page => 1, :per_page => 20)
         elsif params[:search] == "Nombre"
         @orders = Order.where(
           'name = :se_value',
           se_value: params[:valor_se]
-          )
+          ).desc
         #@orders = @orders.paginate(:page => 1, :per_page => 20)
           
         elsif params[:search] == "Fecha"
         @orders = Order.where(
           'DATE(created_at) = :se_value',
           se_value: params[:valor_se]
-          )
+          ).desc
         #@orders = @orders.paginate(:page => 1, :per_page => 20)
           
         end
@@ -62,9 +62,9 @@ class OrdersController < ApplicationController
         @orders = Order.where(
           'created_at >= :today and commerce= :commerce',
           :today  => Time.now - 1.days, commerce: current_user.email
-        )
+        ).desc
       else
-        @orders = Order.where(commerce: current_user.email)
+        @orders = Order.where(commerce: current_user.email).desc
       end
     elsif current_user.role=="Distributor" 
     if params[:fecha] && params[:user]
@@ -72,22 +72,22 @@ class OrdersController < ApplicationController
          @orders = Order.where(
           'DATE(created_at) = :fecha and commerce = :comercio_u',
           fecha: params[:fecha], comercio_u: params[:user]
-          )
+          ).desc
       elsif params[:user]
        @orders=Order.where(:commerce => params[:user], :distributor => current_user.email)
     elsif params[:created_at]
         @orders = Order.where(
           'created_at >= :today and distributor= :distributor',
           :today  => Time.now - 1.days, distributor: current_user.email
-        )
+        ).desc
       else
-        @orders = Order.where(distributor: current_user.email)
+        @orders = Order.where(distributor: current_user.email).desc
       end
     else
       redirect_to home_index_url
     end
     
-    @orders = @orders.paginate(:page => 1, :per_page => 20)
+    @orders = @orders.paginate(:page => 1, :per_page => 20).desc
   end
 
   # GET /orders/1

@@ -16,9 +16,10 @@
 <table class="table">
     <thead>
         <tr>
-        <th>Email</th>
         <th>Nombre</th>
+        <th>Cedula</th>
         <th>Teléfono</th>
+        <th>Email</th>
         <th>Rol</th>
         <th>Zona</th>
         <th>Fecha Creación</th>
@@ -31,14 +32,15 @@
     <tbody>
         <% @users.each do |user| %>
           <tr>
-          <td><%= user.email %></td>
           <td><%= user.name %></td>
+          <td><%= user.identification %></td>
           <td><%= user.phone %></td>
+          <td><%= user.email %></td>
           <td><%= user.role %></td>
           <td><%= user.zone %></td>
           <td><%= user.created_at %></td>
           <td><%= user.updated_at %></td>
-          <td><%= user.creator %></td>
+          <td><%= User.where(:email => user.creator).first.name %></td>
           <td><%= user.commission %></td>
           <td><%= link_to 'Ver', user %></td>
           <td><%= link_to 'Editar', edit_user_path(user) %></td>

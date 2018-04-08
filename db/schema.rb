@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326232444) do
+ActiveRecord::Schema.define(version: 20180408212807) do
+
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ar_internal_metadata", ["key"], name: "sqlite_autoindex_ar_internal_metadata_1", unique: true
 
   create_table "camilos", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180326232444) do
     t.string   "target_value"
     t.string   "commentary"
     t.string   "bank"
+    t.string   "wholesaler"
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id"
@@ -76,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180326232444) do
     t.string   "phone"
     t.float    "commission",             default: 0.0
     t.string   "creator"
+    t.string   "identification"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
