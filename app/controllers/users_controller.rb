@@ -8,10 +8,19 @@ class UsersController < ApplicationController
       #@users= User.all
       @users= User.where(role: params[:role])
     elsif current_user.role=="Commerce" || current_user.role=="Wholesaler" || current_user.role=="Distributor"
-      @users= User.where(role: params[:role], creator: params[:creator])
+    
+    if params[:se_action] && params[:se_value]
+      if params[:se_action]=="search" && current_user.role=="Distributor"
+        @users= User.where(role: params[:role], creator: current_user.email, email: params[:se_value], )
+      elsif params[:se_action]=="search" && current_user.role=="Wholesaler"
+        @users= User.where(role: params[:role], creator: params[:creator], email: params[:se_value], )
+      else
+        @users= User.where(role: params[:role], creator: params[:creator])
+      end
     else
       redirect_to home_index_url
     end
+  end
             
   end
   
@@ -80,7 +89,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-        params.require(:user).permit(:email, :role, :zone, :commission, :name, :phone, :identification)
+        params.require(:user).permit(:email, :role, :zone, :commission, :name, :phone, :identification, :se_action, :se_value)
       
     end
 
