@@ -3,45 +3,36 @@
   <div class="col-sm-6">
     <p id="notice"><%= notice %></p>
 
-<p>
-<center>
-  <strong>Cliente:</strong>
-  <%= @order.client.name %>
-</center>
-</p>
-
-<p>
-<center>
-  <strong>Valor:</strong>
-  <%= @order.value %>
-</center>
-</p>
-
-<p>
-<center>
-  <strong>Documento:</strong>
-  <%= @order.document %>
-</center>
-</p>
-
+<center><h3>Envía</h3></center>
 <p>
 <center>
   <strong>Nombre:</strong>
+  <%= @order.client.name %>
+</center>
+</p>
+<p>
+<center>
+  <strong>Nombre:</strong>
+  <%= @order.client.phone %>
+</center>
+</p>
+<p>
+<center>
+  <strong>Valor:</strong>
+  <%= number_to_currency(@order.value, precision: 0) %>
+</center>
+</p>
+ <center><h3>Recibe</h3></center>
+<p>
+  <p>
+<center>
+<strong>Nombre:</strong>
   <%= @order.name %>
 </center>
 </p>
-
-<p>
 <center>
-  <strong>Email:</strong>
-  <%= @order.email %>
-</center>
-</p>
-
-<p>
-<center>
-  <strong>Teléfono:</strong>
-  <%= @order.phone %>
+<strong>Documento :</strong>
+  <%= @order.document %>
 </center>
 </p>
 
