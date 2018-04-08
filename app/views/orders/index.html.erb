@@ -59,7 +59,9 @@
         <td><%= order.email %></td>
         <td><%= order.phone %></td>
         <td><%= order.zone %></td>
-        <td><%= order.commerce %></td>
+        <% @us=User.where(:email => order.commerce).first %>
+        <li><%= link_to order.commerce, user_path(User.where(:email => order.commerce).first), :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
+        </td>
         <td><%= order.created_at %></td>
         <td><%= order.status %></td>
         <td><%= order.commentary %></td>
