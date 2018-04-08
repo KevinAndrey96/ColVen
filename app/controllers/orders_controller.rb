@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
+    
+    
     @clients = Client.all
     if current_user.role=="Wholesaler" && params[:user]
       @orders=Order.where(:commerce => params[:user])
@@ -19,7 +21,26 @@ class OrdersController < ApplicationController
         )
       else  
         @orders = Order.all
+        @orders = @orders.paginate(:page => 1, :per_page => 20)
       end
+      
+      if params[:search] && params[:valor_se]
+        if params[:search] == "Documento"
+        @orders = Order.where(
+          'document = :se_value',
+           se_value: params[:valor_se]
+          )
+        @orders = @orders.paginate(:page => 1, :per_page => 20)
+        elsif params[:search] == "Nombre"
+        @orders = Order.where(
+          'name = :se_value',
+          se_value: params[:valor_se]
+          )
+        @orders = @orders.paginate(:page => 1, :per_page => 20)
+          
+        end
+      end
+      
     elsif current_user.role=="Commerce" 
     if params[:created_at]
         @orders = Order.where(

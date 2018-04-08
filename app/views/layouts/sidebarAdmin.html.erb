@@ -28,7 +28,7 @@
     <li><!-- Link with dropdown items -->
         <center><a href="#SReportes" data-toggle="collapse" class="" style="font-size:20px; color:white; text-decoration:none; ">Reportes</a>
         <ul class="collapse list-unstyled " id="SReportes">
-            <li><a href="#">Buscar</a></li>
+            <li><%= link_to "Buscar", search_index_path, :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
             <li><%= link_to "General", orders_path, :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
             <li><%= link_to "Exitosos Diario", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home', :style => 'text-decoration:none;' %></li>
             <li><%= link_to "Espera Diario", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' , :style => 'text-decoration:none;' %></li>
