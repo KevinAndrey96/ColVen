@@ -18,9 +18,12 @@ class UsersController < ApplicationController
         @users= User.where(role: params[:role], creator: params[:creator])
       end
     else
+      @users= User.where(role: params[:role], creator: params[:creator])
+    end
+    else
       redirect_to home_index_url
     end
-  end
+  
             
   end
   
