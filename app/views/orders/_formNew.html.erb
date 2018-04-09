@@ -1,11 +1,14 @@
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <h2><%= pluralize(@order.errors.count, "error") %> en el formulario:</h2>
 
       <ul>
       <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <h1><%= message %></h1>
+        <script>
+          window.alert("Por favor verifique la información e intente de nuevo");
+        </script>
       <% end %>
       </ul>
     </div>
@@ -31,19 +34,11 @@
     <%= f.text_field :name , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
-    <h3><label>Correo electrónico</label></h3>
-    <%= f.text_field :email , :class => 'form-control',:required => true, :type => 'email' %>
-  </div>
-  <div class="field">
-    <h3><label>Teléfono</label></h3>
-    <%= f.text_field :phone , :class => 'form-control',:required => true, :type => 'number' %>
-  </div>
-  <div class="field">
     <h3><label>Número de cuenta</label></h3>
-    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'number', :id => "Cuenta", :onchange => "validar()" %>
+    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'number' %>
   </div>
   <div class="field">
-    <h3><label>Nombre de Banco</label></h3>
+    <h3><label>Nombre del Banco</label></h3>
     <%= f.text_field :bank, :class => 'form-control', :required => true %>
   </div>
     <div class="field">
@@ -63,11 +58,3 @@
   <% end %>
     
 <% end %> 
-<script>
-function validar() {
-  if (document.getElementById("Cuenta").length!=20) {
-    alert('El campo debe tener 20 caracteres');
-    document.getElementById("Cuenta").focus();
-  }
-}
-</script>
