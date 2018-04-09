@@ -1,10 +1,13 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update]
+  skip_before_filter :verify_authenticity_token
   layout "dashboard"
   # GET /clients
   # GET /clients.json
   def index
-    if current_user.role=="Admin" || current_user.role=="Commerce"
+    if params[:s] && current_user.role=="Commerce"
+      @clients = Client.where(document: params[:s])
+    elsif current_user.role=="Admin" || current_user.role=="Commerce"
       @clients = Client.all
     else
       redirect_to home_index_url
@@ -78,6 +81,7 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:document, :name, :email, :city, :address, :phone)
+      #params.permit(:client, :document, :name, :email, :city, :address, :phone, :s)
+      params.require(:client).permit(:document, :name, :email, :city, :address, :phone, :s)
     end
 end

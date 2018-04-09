@@ -1,5 +1,5 @@
-<li><%= link_to "Clientes Colven", clients_path %></li>
-<li><%= link_to "Realizar Intercambio", new_order_path %></li>
+<!--<li><%= link_to "Realizar Intercambio", new_order_path %></li>-->
+<li><%= link_to "Realizar Intercambio", prepare_order_index_path %></li>
 <li><%= link_to "Reporte General", orders_path %></li>
-<li><%= link_to "Reporte Intercambios EXITOSOS ultimas 24 horas", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home' %></li>
-<li><%= link_to "Reporte Intercambios PENDIENTES ultimas 24 horas", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Intercambios EXITOSOS hoy", orders_path(:created_at => true , :status => 'Exitoso' ), :class => 'fa fa-home' %></li>
+<li><%= link_to "Intercambios PENDIENTES hoy", orders_path(:created_at => true, :status => 'Espera' ), :class => 'fa fa-home' %></li>

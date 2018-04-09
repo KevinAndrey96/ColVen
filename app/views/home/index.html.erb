@@ -3,7 +3,7 @@
         when "Admin" %>
             <center><h1 style="font-size: 250%; color: #FF9800;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
         <% when "Commerce" %>
-        <center><h1 style="font-size: 250%; color: #FF980;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
+        <center><h1 style="font-size: 250%; color: #FF9800;;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
             
             
             
@@ -32,7 +32,7 @@
         <% when nil %>
             <center><h1>Usted no tiene permiso para ver esta página</h1></center>
         <% when "Distributor" %>
-        <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
+        <center><h1 style="font-size: 250%; color: #FF9800;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(3) %></label></h1></center>
             <div class="col-xs-6">
             
         </div>
@@ -46,7 +46,7 @@
         <% when "Transfer" %>
             
         <% when "Wholesaler" %>
-            <center><h1 style="font-size: 250%;">Tasa de cambio vigente <label  id="Tasa">$ <%=(Setting.last.exchange_rate).round(3) %></label></h1></center>
+            <center><h1 style="font-size: 250%; color: #FF9800;">Tasa de cambio vigente <label  id="Tasa">$ <%=(Setting.last.exchange_rate).round(3) %></label></h1></center>
         <% end %>
         
         <br>

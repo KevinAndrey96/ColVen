@@ -38,13 +38,18 @@
     <%= f.text_field :phone , :class => 'form-control',:required => true %>
   </div>
   <div class="field">
+    <h3><label>Número de cuenta</label></h3>
+    <%= f.text_field :account, :class => 'form-control', :required => true %>
+  </div>
+  <div class="field">
     <h3><label>Banco</label></h3>
     <%= f.text_field :bank, :class => 'form-control', :required => true %>
   </div>
   <div class="field">
-    <h3><label>Número de cuenta</label></h3>
-    <%= f.text_field :account, :class => 'form-control', :required => true %>
+    <h3><label>Tipo de cuenta (Ahorros/Corriente)</label></h3>
+    <%= f.text_field :type_account, :class => 'form-control', :required => true %>
   </div>
+  
   <br>
     <div class="actions">
       <%= submit_tag "Siguiente", :class => "btn btn-default" %>

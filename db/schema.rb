@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408232945) do
+ActiveRecord::Schema.define(version: 20180409014118) do
 
   create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
     t.string   "value"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20180408232945) do
     t.string   "commentary"
     t.string   "bank"
     t.string   "wholesaler"
+    t.string   "type"
+    t.string   "type_account"
   end
 
   add_index "orders", ["client_id"], name: "index_orders_on_client_id"

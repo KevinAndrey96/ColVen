@@ -63,8 +63,10 @@ class OrdersController < ApplicationController
        #   'created_at >= :today and commerce= :commerce',
         #  :today  => Time.now - 1.days, commerce: current_user.email
         #).desc
-        @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, :commerce => params[:commerce]).desc
+        #puts "fskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaf"
+        @orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, :commerce => current_user.email, :status => params[:status])
       else
+        #puts "fskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaffskadljkjdfsalkjñasdfkñldjasfñldasfjdfaslñjasdflñkdsaf"
         @orders = Order.where(commerce: current_user.email).desc
       end
     elsif current_user.role=="Distributor" 
@@ -129,7 +131,9 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    
     @order = Order.new(order_params)
+    @order.client_id=Client.where(email: params[:client_email]).last.id
     @order.zone=current_user.zone
     @order.distributor=current_user.creator
     @order.commerce=current_user.email
@@ -167,13 +171,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
-      
-      
-      
-      
-      
-      
-      
+
   end
 
   # DELETE /orders/1
@@ -194,7 +192,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
+      params.require(:order).permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary, :client_email, :type_account)
       #params.permit(:client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check, :status, :user, :bank, :commentary)
       #params.permit(:order, :client_id, :value, :document, :name, :email, :city, :address, :phone, :account, :voucher, :created_at, :voucher_check) este no
     end

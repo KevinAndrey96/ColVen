@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'prepare_order/index'
+
   resources :comments
   get 'search/index'
 

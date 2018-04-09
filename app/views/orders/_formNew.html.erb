@@ -10,13 +10,14 @@
       </ul>
     </div>
   <% end %>
-  <h2><%= link_to 'Nuevo Cliente', new_client_path %></h2>
+
   <div class="field">
-    <h2><label>Cliente Frecuente</label></h2>
+    <h2><label>Cliente</label></h2>
     
-    <%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control',:required => true) %>
+    <!--<%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control',:required => true) %>-->
+    <input type="text" class="form-control" value="<%= params[:cliente] %>" name="client_email" required readonly>
   </div>
-  <h1>Datos de quién recibe</h1>
+  <h1><b><strong>Datos de quien recibe</strong></b></h1>
   <div class="field">
     <h3><label>Valor de intercambio</label></h3>
     <%= f.number_field :value , :class => 'form-control',:required => true, :type => 'number' %>
@@ -38,13 +39,18 @@
     <%= f.text_field :phone , :class => 'form-control',:required => true, :type => 'number' %>
   </div>
   <div class="field">
-    <h3><label>Banco</label></h3>
-    <%= f.text_field :bank, :class => 'form-control', :required => true %>
+    <h3><label>Número de cuenta</label></h3>
+    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'number', :id => "Cuenta", :onchange => "validar()" %>
   </div>
   <div class="field">
-    <h3><label>Número de cuenta</label></h3>
-    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'number' %>
+    <h3><label>Nombre de Banco</label></h3>
+    <%= f.text_field :bank, :class => 'form-control', :required => true %>
   </div>
+    <div class="field">
+    <h3><label>Tipo de cuenta (Ahorros/Corriente)</label></h3>
+    <%= f.text_field :type_account, :class => 'form-control', :required => true %>
+  </div>
+  
   <br>
     <div class="actions">
       <%= submit_tag "Siguiente", :class => "btn btn-default" %>
@@ -57,3 +63,11 @@
   <% end %>
     
 <% end %> 
+<script>
+function validar() {
+  if (document.getElementById("Cuenta").length!=20) {
+    alert('El campo debe tener 20 caracteres');
+    document.getElementById("Cuenta").focus();
+  }
+}
+</script>

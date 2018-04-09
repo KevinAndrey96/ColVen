@@ -1,6 +1,18 @@
 <p id="notice"><%= notice %></p>
+<% if current_user.role=="Commerce" %>
+<form method="GET" action="/clients">
+<div class="row">
+  <div class="col-md-11">
+    <input type="number" class="form-control" placeholder="Documento" name="s">
+  </div>
+  <div class="col-md-1">
+    <input type="submit" class="btn btn-primary btn">
+  </div>
+</div>
+</form>
+<% end %>
 
-<h1>Cliente Colven</h1>
+<h1>Clientes Colven</h1>
 
 <table class="table">
   <thead>
@@ -11,8 +23,9 @@
         <th>Correo electrónico</th>
         <th>Teléfono</th>
         <th colspan="3">Acciones</th>
-      <% elsif current_user.role=="Commerce" %>
+      <% elsif current_user.role=="Commerce" and params[:s] %>
         <th>Nombre Completo</th>
+        <th>Opción</th>
       <% end %>
     </tr>
   </thead>
@@ -28,8 +41,9 @@
           <td><%= link_to 'Ver', client %></td>
           <td><%= link_to 'Editar', edit_client_path(client) %></td>
           
-        <% elsif current_user.role=="Commerce" %>
+        <% elsif current_user.role=="Commerce" and params[:s] %>
           <td><%= client.name %></td>
+          <td><%= link_to 'Nuevo Intercambio', new_order_path(cliente: client.email), :class => "btn btn-default" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -38,4 +52,4 @@
 
 <br>
 
-<%= link_to 'Nuevo Cliente', new_client_path %>
+<!--<%= link_to 'Nuevo Cliente', new_client_path %>-->
