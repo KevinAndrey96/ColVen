@@ -19,4 +19,4 @@
   <h3><label>Teléfono</label></h3>
   <h4><%= @client.phone %></h4>
 </p>
-<li><%= link_to "Realizar Intercambio", new_order_path(cliente: @client.email), :class =>"form-control" %></li>
+<li><%= link_to "Realizar Intercambio", new_order_path(cliente: @client.email), :class =>"btn btn-default", :style => "font-size: 150%;" %></li>

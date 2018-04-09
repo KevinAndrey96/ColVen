@@ -144,7 +144,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order, notice: 'La transacción se ha efectuado satisfatoriamente' }
         format.json { render :show, status: :created, location: @order }
       else
-        format.html { render :new }
+        format.html { render :new, :cliente => params[:client_email] }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end

@@ -1,11 +1,11 @@
-<%= form_for(@order) do |f| %>
+<%= form_for @order , :html => {:multipart => true} do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> en el formulario:</h2>
 
       <ul>
       <% @order.errors.full_messages.each do |message| %>
-        <h1><%= message %></h1>
+        <h1>La cuenta no tiene 20 carácteres exactos</h1>
         <script>
           window.alert("Por favor verifique la información e intente de nuevo");
         </script>
@@ -19,6 +19,7 @@
     
     <!--<%= select_tag("order[client_id]", options_from_collection_for_select(Client.all, "id", "name"), :class => 'form-control',:required => true) %>-->
     <input type="text" class="form-control" value="<%= params[:cliente] %>" name="client_email" required readonly>
+    
   </div>
   <h1><b><strong>Datos de quien recibe</strong></b></h1>
   <div class="field">
