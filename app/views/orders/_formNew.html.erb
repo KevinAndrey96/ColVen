@@ -8,6 +8,7 @@
         <h1>La cuenta no tiene 20 carácteres exactos</h1>
         <script>
           window.alert("Por favor verifique la información e intente de nuevo");
+          
         </script>
       <% end %>
       </ul>
@@ -36,7 +37,7 @@
   </div>
   <div class="field">
     <h3><label>Número de cuenta</label></h3>
-    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'number' %>
+    <%= f.text_field :account, :class => 'form-control', :required => true, :type => 'text', :minlength => "20",:maxlength => "20", :onkeypress => "test(this.id, event)" %>
   </div>
   <div class="field">
     <h3><label>Nombre del Banco</label></h3>
@@ -59,3 +60,18 @@
   <% end %>
     
 <% end %> 
+
+<script>
+    function test(id, event) {
+        var element = $("#" + id);
+        var len = element.val().length + 1;
+        var max = element.attr("maxlength");
+
+        var cond = (46 < event.which && event.which < 58) || (46 < event.keyCode && event.keyCode < 58);
+
+        if (!(cond && len <= max)) {
+            event.preventDefault();
+            return false;
+        }
+    }
+</script>
