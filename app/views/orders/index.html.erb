@@ -62,7 +62,11 @@
       <tr>
       <% case current_user.role
         when "Transfer" %>
-        <td><%= order.name %></td>
+        <% begin %>
+          <td><%= order.client.name %></td>
+        <% rescue %>
+          <td>Usuario eliminado</td>
+        <%end%>
         <td><%= order.document %></td>
         <td><%= order.bank %></td>
         <td><%= order.type_account %></td>
@@ -73,10 +77,10 @@
         <td><%= link_to 'Ver comprobante', order %></td>
         <td><%= link_to 'Subir comprobante', edit_order_path(order) %></td>
       <% else%>
-      <% begin %>
-        <td><%= order.client.name %></td>
+        <% begin %>
+          <td><%= order.client.name %></td>
         <% rescue %>
-        <td>Usuario eliminado</td>
+          <td>Usuario eliminado</td>
         <%end%>
         <td><%= order.name %></td>
         <td><%= order.bank %></td>
