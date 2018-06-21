@@ -26,8 +26,7 @@
 <table class="table">
   <thead>
     <tr>
-      <% case current_user.role
-      when "Transfer" %>
+      <% if current_user.role == "Transfer" %>
         <th>Recibe</th>
         <th>Documento</th>
         <th>Banco</th>
@@ -60,8 +59,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-      <% case current_user.role
-        when "Transfer" %>
+      <% if current_user.role == "Transfer" %>
         <% begin %>
           <td><%= order.client.name %></td>
         <% rescue %>
@@ -77,11 +75,9 @@
         <td><%= link_to 'Ver comprobante', order %></td>
         <td><%= link_to 'Subir comprobante', edit_order_path(order) %></td>
       <% else%>
-        <% begin %>
           <td><%= order.client.name %></td>
-        <% rescue %>
-          <td>Usuario eliminado</td>
-        <%end%>
+          <td><%= order.client.phone %></td>
+          <td><%= order.name %></td>
         <td><%= order.bank %></td>
         <td><%= order.type_account %></td>
         <td><%= order.account %></td>
@@ -91,6 +87,10 @@
           <% begin %>
             <% @us=User.where(:email => order.commerce).first %>
             <td><%= link_to @us.name, user_path(User.where(:email => order.commerce).first), :class => 'fa fa-home', :style => 'text-decoration:none;' %></td>
+            <td><%= order.created_at %></td>
+            <td><%= order.status %></td>
+            <td><%= order.commentary %></td>
+            <td><%= link_to 'Ver', order %></td>
           <% rescue %>
             <td>Error</td>
             <td><%= order.created_at %></td>
