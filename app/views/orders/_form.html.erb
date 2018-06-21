@@ -19,7 +19,7 @@
   <h1>Datos de quién recibe</h1>
   <div class="field">
     <h3><label>Valor de intercambio</label></h3>
-    <%= f.number_field :value , :class => 'form-control',:required => true %>
+    <%= f.number_field :value , :class => 'form-control',:required => true, :min => "60000" %>
   </div>
   <div class="field">
     <h3><label>Documento</label></h3>
