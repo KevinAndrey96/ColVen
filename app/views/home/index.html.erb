@@ -1,9 +1,9 @@
 <div class="field">
     <% case current_user.role 
         when "Admin" %>
-            <center><h1 style="font-size: 250%; color: #FF9800;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(4) %></label></h1></center>
+            <center><h1 style="font-size: 250%; color: #FF9800;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(5) %></label></h1></center>
         <% when "Commerce" %>
-        <center><h1 style="font-size: 250%; color: #FF9800;;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(4) %></label></h1></center>
+        <center><h1 style="font-size: 250%; color: #FF9800;;">Tasa de cambio vigente <label  id="Tasa">$ <%= (Setting.last.exchange_rate).round(5) %></label></h1></center>
             
             <div class="row">
                 <center><h2>Simulador</h2></center>
